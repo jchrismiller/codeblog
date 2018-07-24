@@ -1,0 +1,72 @@
+.navbar {
+    border-radius: 0;
+    margin-bottom: 20px;
+    transition: .3s;
+    .navbar-brand {
+        font-weight: bolder;
+        .light {
+            font-weight: 300;
+        }
+    }
+    .navbar-toggler {
+        outline: none;
+    }
+}
+.collapse-bg {
+    padding: 0 !important;
+    .card {
+        margin-bottom: 0;
+        border-radius: 0;
+        border: none;
+    }
+}
+.nav-item.small_avatar img{
+    max-width: 38px;
+    max-height: 38px;
+    border-radius: 50%;
+}
+/*====================================
+==========NAVBAR TRANSITION===========
+====================================*/
+
+.navbar-active{
+    background-color: black;
+    opacity: 0.8;
+}
+
+.navbar.navbar-active a.nav-link{
+    color: white;
+}
+
+.navbar.navbar-active a.nav-link:hover{
+    color: white;
+}
+
+.navbar.navbar-active a.nav-link.active{
+    color: white;
+}
+
+.navbar.navbar-active a.nav-link.active:hover{
+    color: white;
+}
+
+.navbar.navbar-active .navbar-brand {
+    color: white;
+}
+
+.collapse-bg .card .list-group-item {
+    padding: 0;
+    border-radius: 0 !important;
+    border-color: black;
+    a {
+        background-color: #1a1a1a;
+        color: #bdc3c7;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        &:active {
+            color: white;
+            border-bottom: none;
+        }
+    }
+}

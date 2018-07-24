@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="https://code.jquery.com/jquery-3.2.1.js">
+  </script>
+  <script type="text/javascript">
+    $(window).on('scroll', function() {
+      if($(window).scrollTop()) {
+        $('.navbar').addClass('navbar-active');
+        // $('.nav-link').Class('navbar-active');
+      }
+      else {
+        $('.navbar').removeClass('navbar-active');
+        // $('.nav-link').removeClass('navbar-active');
+      }
+
+    })
+
+  </script>
+</head>
+<body>
+
+<div class="collapse" id="exCollapsingNavbar">
+  <div class="collapse-bg p-a-1">
+    <div class='card'>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <%= link_to 'Blog', root_path, class: "nav-link #{yield(:blog_active)}" %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to 'About', about_path, class: "nav-link #{yield(:about_active)}" %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to 'Contact', contact_path, class: "nav-link #{yield(:contact_active)}" %>
+        </li>
+        <% if author_signed_in? %>
+          <li class="list-group-item">
+            <%= link_to 'My posts', authors_posts_path, class: "nav-link #{yield(:author)}" %>
+          </li>
+          <li class="list-group-item">
+            <%= link_to 'Logout', destroy_author_session_path, method: :delete, class: "nav-link"%>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-light bg-faded navbar-fixed-top"> <!--  -->
+  <div class='container'>
+    <a class='navbar-brand' href='/'>
+      Type B <span class='light'>Gamer</span>
+    </a>
+    <button class="navbar-toggler hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+      &#9776;
+    </button>
+    <ul class="nav navbar-nav pull-sm-right hidden-xs-down">
+      <li class="nav-item">
+        <%= link_to 'Blog', root_path, class: "nav-link #{yield(:blog_active)}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'About', about_path, class: "nav-link #{yield(:about_active)}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Contact', contact_path, class: "nav-link #{yield(:contact_active)}" %>
+      </li>
+      <% if author_signed_in? %>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle <%= yield(:author) %>" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= current_author.display_name %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to 'My posts', authors_posts_path, class: "dropdown-item" %>
+          <%= link_to 'Account', authors_account_path, class: "dropdown-item" %>
+          <%= link_to 'Logout', destroy_author_session_path, method: :delete, class: "dropdown-item"%>
+        </div>
+      </li>
+      <li class = "nav-item small_avatar">
+        <%= image_tag(current_author.gravatar_image_url) %>
+      </li>
+      
+      <% end %>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>
